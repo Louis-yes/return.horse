@@ -3,16 +3,62 @@
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>return.horse</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>horse forge</title>
     <style>
+        * {box-sizing: border-box;}
         body { font-family: sans-serif; color: red}
+        main {
+            position: relative; 
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-areas: 
+            "img"
+            "form"
+            "output"
+            ;
+        }
         label { display: block; }
-        ul { list-style: none; padding: 0}
-        img {width: 600px; height: auto;}
+        ul { 
+            list-style: none; 
+            padding: 0 10px; 
+            max-width: 100%;
+        }
+        img {
+            grid-area: img;
+            display: block;
+            width:100%; 
+            max-width: 600px; 
+            margin: 0 auto;
+        }
+        form { grid-area: form; }
+        textarea, input { 
+            border: solid 1px red; 
+            outline: none; 
+            border-radius: 4px;
+            box-shadow: none; 
+            appearance: none;
+            -webkit-appearance: none;
+            width: 100%;
+        }
+        li textarea { height: 100px; }
+        ul {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: 1fr 1fr;
+        }
+        li:first-child, li:nth-child(2) { grid-column: span 1; }
+        li { grid-column: span 2; }
+        
+        .output label { margin-bottom: 0; }
         @media screen and (min-width:800px) {
+            main {
+                grid-template-columns: 30% auto;
+                grid-template-areas: 
+                "form   img"
+                ;
+            }
             img {float:right;}
-            input, textarea {width: 200px;}
         }
     </style>
 </head>
@@ -20,21 +66,9 @@
     <main>
         <img id="panel-full" src=""/>
         <form>
-            <ul>
-                <li><label for="text-panel-one">panel one</label> <textarea type="text" id="text-panel-one" name="text-panel-one"></textarea></li>
-                <li><label for="text-panel-two">panel two</label><textarea type="text" id="text-panel-two" name="text-panel-two"></textarea></li>
-                <li><label for="title">title</label><input type="text" id="title" name="title"></li>
-                <li><label for="hovertext">hovertext</label><input type="text" id="hovertext" name="hovertext"></li>
-                <li><label for="description">description</label><input type="text" id="description" name="description"></li>
-                <li><label for="path">path</label><input type="text" id="path" name="path"></li>
-                <li><label for="alt-panel-one">alt-panel-one</label><input type="text" id="alt-panel-one" name="alt-panel-one"></li>
-                <li><label for="alt-panel-two">alt-panel-two</label><input type="text" id="alt-panel-two" name="alt-panel-two"></li>
-                <li><label for="alt-panel-full">alt-panel-full</label><input type="text" id="alt-panel-full" name="alt-panel-full"></li>    
-            </ul>
         </form>
-        <label for="output">output</label>
-        <textarea name="output" id="" cols="30" rows="10"></textarea>
     </main>
+    <script src="../clay/render.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

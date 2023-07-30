@@ -54,6 +54,7 @@ function renderer(path){
 
         ctx.drawImage(images[0], 0, 0, r, r);
         ctx.font = TRANSFORMS[0].font;
+
         textone.split("\n").forEach((line,i) => { ctx.fillText(line.trim(), PANELONEX, autoY(textone) + i*30) });
         texttwo.split("\n").forEach((line,i) => { ctx.fillText(line.trim(), PANELTWOX, autoY(texttwo) + i*30) });
         full = ccc.toDataURL();

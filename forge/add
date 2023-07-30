@@ -1,29 +1,21 @@
 #!/bin/bash
 
-# Prompt the user to enter the key-value pairs
-echo "Enter key-value pairs (key:value) [Enter 'done' to finish]:"
-
 # Read the input from the user
-input_lines=()
-while IFS= read -r line; do
-    if [[ "$line" == "" ]]; then
-        break
-    fi
-    input_lines+=("$line")
-done
+input_lines=$1
 
 keys=()
 values=()
-for line in "${input_lines[@]}"; do
+while read -r line; do
     IFS=': ' read -r key value <<< "$line"
     values+=("$value")
     keys+=("$key")
-done
+done < $1
 
 # Convert array to tab-separated string for the TSV header
 header=$(IFS=$'\t'; echo "${keys[*]}")
 # Append header to the TSV file if it doesn't exist
-tsv_file="data.tsv"
+tsv_file="clay/comics.tsv"
+
 if [[ ! -f "$tsv_file" ]]; then
     echo -e "$header" >> "$tsv_file"
 fi

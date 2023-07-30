@@ -1,7 +1,5 @@
 * { box-sizing: border-box; }
-:root {
-    --red: red;
-}
+:root { --red: #E43542; }
 body {
     margin: 0;
     font-family: sans-serif;
@@ -10,7 +8,6 @@ body {
 a { color: var(--red); }
 a:visited { color: var(--red); }
 data { display: none; }
-
 h2 { 
     font-size: 12pt; 
     margin: 0;
@@ -62,13 +59,8 @@ nav {
     transition: transform .2s ease-in-out;
 }
 
-nav.open {
-    transform: translate3d(0, 0, 0);
-}
-
-nav li {
-    margin: 10px;
-}
+nav.open { transform: translate3d(0, 0, 0); }
+nav li { margin: 10px; }
 nav li a {
     width: 100%;
     display: flex;
@@ -84,20 +76,17 @@ nav ol {
     padding: 0;
 }
 
-main {
-    transition: filter .3s ease-in-out;
-}
-.blur {
-    filter: blur(5px);
-}
+main { transition: filter .3s ease-in-out; }
+
+.blur { filter: blur(5px); }
 
 .comic-list {
     margin:0;
     padding:0;
     list-style: none;
-
     color: var(--red);
 }
+
 .day article {
     padding: 5px 20px;
     display: block;
@@ -106,7 +95,11 @@ main {
     padding: 10px 20px 0;
     display: block;
 }
-.day .description { margin: 0; padding: 1em 0; cursor: pointer;}
+.day .description { 
+    margin: 0; 
+    padding: 1em 0; 
+    cursor: pointer;
+}
 .day .description .description-text {
     opacity: 0;
     transition: opacity 1s;
@@ -146,6 +139,7 @@ main {
     background-color: white;
     object-fit: cover;
 }
+
 .panel-full {
     box-shadow: rgba(0,0,0,.1) 0 3px 15px 0px;
     border-radius: 4px;
@@ -155,13 +149,23 @@ main {
     display: none;
 }
 
-@media screen and (min-width:420px){
-
-.mobile-panels img {
-    width: 307px;
-    height: 426px;
+.what {
+    color: var(--red);
+    padding: 30px;
+    max-width: 500px;
+    line-height: 1.25;
 }
 
+hr {
+    border-color: var(--red);
+    border-style: dotted;
+}
+
+@media screen and (min-width:420px){
+    .mobile-panels img {
+        width: 307px;
+        height: 426px;
+    }
 }
 
 @media screen and (min-width:800px){
@@ -170,13 +174,13 @@ main {
         right: 20px;
     }
     
-    .mobile-panels {
-        display: none;
-    }
+    .mobile-panels { display: none; }
+
     .panel-full {
         display: block;
         grid-area: IMAGE;
     }
+
     .day {
         padding: 50px;
         display: grid;
@@ -198,14 +202,13 @@ main {
         position: relative;
         grid-area: ARTICLE;
     }
-
     .day .description {
         position: absolute;
         bottom: 0;
     }
-    menu {
-        display: none;
-    }
+
+    menu { display: none; }
+    
     nav {
         display: block;
         transform: none;
@@ -216,9 +219,7 @@ main {
         right: 10px;
         margin: 0;
     }
-    nav ol {
-        margin: 0;
-    }
+    nav ol { margin: 0; }
     nav li a {
         display: inline;
         height: auto;
