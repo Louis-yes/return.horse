@@ -62,9 +62,10 @@ function download(name, content){
 function update(render){
     const cc = formToComic(form)
     panelFull.src = render(cc)[0]
-    document.querySelector("#panelOneAlt").value = `${PANELONEDESCRIPTION}. Text reads: ${cc.panelOneText.replace(/\\\n/g, " ")}`; 
-    document.querySelector("#panelTwoAlt").value = `${PANELTWODESCRIPTION}. Text reads: ${cc.panelTwoText.replace(/\\\n/g, " ")}`; 
-    document.querySelector("#fullAlt").value = `Panel One: ${PANELONEDESCRIPTION}. Text reads - ${cc.panelOneText.replace(/\\\n/g, " ")}. Panel Two: ${PANELTWODESCRIPTION}. Text reads - ${cc.panelTwoText.replace(/\\\\n/g, " ")}`
+    console
+    document.querySelector("#panelOneAlt").value = `${PANELONEDESCRIPTION}. Text reads: ${cc.panelOneText.replace(/\n/g, " ")}`; 
+    document.querySelector("#panelTwoAlt").value = `${PANELTWODESCRIPTION}. Text reads: ${cc.panelTwoText.replace(/\n/g, " ")}`; 
+    document.querySelector("#fullAlt").value = `Panel One: ${PANELONEDESCRIPTION}. Text reads - ${cc.panelOneText.replace(/\n/g, " ")}. Panel Two: ${PANELTWODESCRIPTION}. Text reads - ${cc.panelTwoText.replace(/\n/g, " ")}`
     localStorage.setItem('comic', JSON.stringify(cc))
     if(!data.some(c => c.path == cc.path)){
         form.querySelector('button').disabled = false;        
@@ -77,6 +78,7 @@ function formToComic(ff){
     const fd = new FormData(ff)
     const date = new Date().toISOString().substring(0,10)
     const values = [...fd.entries()].reduce((o,k) => {
+        console.log(k[0], k[1])
         o[k[0]] = k[1].trim()
         return o
     }, new Comic())
