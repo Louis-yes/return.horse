@@ -76,7 +76,7 @@ function makeComic(cc, i){
             <li><img class="panel-one" width="600" height="600" alt="${cc.panelOneAlt}"></li>
             <li><img class="panel-two" width="600" height="600" alt="${cc.panelTwoAlt}"></li>
         </ul>
-        <img class="panel-full" width="600" height="600">
+        <img class="panel-full" width="600" height="600" title="${cc.hovertext}">
         <article>
             <h2 id="${cc.path}">${cc.title}</h2>
             <p class="description"><span class="toggle">+</span> <span class="description-text">${cc.description}</span></p>
