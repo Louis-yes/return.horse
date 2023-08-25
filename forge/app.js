@@ -37,6 +37,10 @@ cowboy.yeehaw().then((render) => {
         e.preventDefault();
         downloadFiles(render)
     })
+    form.querySelector('[name="clear"]').addEventListener('click', () => {
+        clearForm(form);
+        update(render);
+    })
 })
 
 function downloadFiles(render){
@@ -62,7 +66,6 @@ function download(name, content){
 function update(render){
     const cc = formToComic(form)
     panelFull.src = render(cc)[0]
-    console
     document.querySelector("#panelOneAlt").value = `${PANELONEDESCRIPTION}. Text reads: ${cc.panelOneText.replace(/\n/g, " ")}`; 
     document.querySelector("#panelTwoAlt").value = `${PANELTWODESCRIPTION}. Text reads: ${cc.panelTwoText.replace(/\n/g, " ")}`; 
     document.querySelector("#fullAlt").value = `Panel One: ${PANELONEDESCRIPTION}. Text reads - ${cc.panelOneText.replace(/\n/g, " ")}. Panel Two: ${PANELTWODESCRIPTION}. Text reads - ${cc.panelTwoText.replace(/\n/g, " ")}`
@@ -86,24 +89,30 @@ function formToComic(ff){
     return values
 }
 
+function clearForm(ff){
+    comicToForm(new Comic(), ff)
+}
+
 function comicToForm(cc, ff){
     Object.keys(new Comic()).forEach(n => {
-        ff.querySelector(`[name=${n}]`).value = cc[n]
+        if(n != "date") {
+            ff.querySelector(`[name=${n}]`).value = cc[n]
+        }
     })
 }
 
 function comicToString(comic){
-return `date: ${comic.date}
-title: ${comic.title}
-path: ${comic.path}
-description: ${comic.description}
-hovertext: ${comic.hovertext}
-panelOneText: ${comic.panelOneText.replace(/\s?\n/g, " \\\\n ")} 
-panelTwoText: ${comic.panelTwoText.replace(/\s?\n/g, " \\\\n ")}
-panelOneAlt: ${comic.panelOneAlt}
-panelTwoAlt: ${comic.panelTwoAlt}
-fullAlt: ${comic.fullAlt}
-`
+    return `date: ${comic.date}
+    title: ${comic.title}
+    path: ${comic.path}
+    description: ${comic.description}
+    hovertext: ${comic.hovertext}
+    panelOneText: ${comic.panelOneText.replace(/\s?\n/g, " \\\\n ")} 
+    panelTwoText: ${comic.panelTwoText.replace(/\s?\n/g, " \\\\n ")}
+    panelOneAlt: ${comic.panelOneAlt}
+    panelTwoAlt: ${comic.panelTwoAlt}
+    fullAlt: ${comic.fullAlt}
+    `
 }
 
 function createForm(){
@@ -112,11 +121,12 @@ function createForm(){
         <li><label for="panelTwoText">panel two</label><textarea type="text" id="panelTwoText" name="panelTwoText"></textarea></li>
         ${
             Object.keys(new Comic()).map(k => {
-                return (k == "panelOneText" || k == "panelTwoText") ? "" :
+                return (k == "panelOneText" || k == "panelTwoText") || k == "date" ? "" :
                         `<li><label for="${k}}">${k}</label><input type="text" id="${k}" name="${k}"></li>`
             }).join('')
         }
-        <li><button onclick="download">download</button></li>
+        <li><button>download</button></li>
+        <li><button type="button" name="clear">clear</button></li>
         </ul>
     `
 }
