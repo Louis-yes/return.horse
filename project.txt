@@ -1,0 +1,57 @@
+I struggle with using project management tools for this project, 
+but I want to keep track of shit. I'm trying this out, I've
+seen other artist/developers use something like this it in 
+source files. It's simple, elegant, and hopefully successful.
+
+~~~~
+
+return.horse
+
+a repetitive webcomic
+
+goals:
+- create a lot of cowboy themed comics
+- learn about producing a webcomic and the systems behind that
+- write down what I've learnt
+
+current status: v3 Launched 
+
+Forge
+	bugs
+	- alt text has weird spacing
+	
+	todo
+	- text view - for copying over messenger
+	- text view - two way editing. Changes in text view changes the comic state (including updating alt text)
+
+Site
+	bugs
+	- about page line spacing is too tight
+
+	todo
+	- design the journal
+	- make the journal
+	- design  redesign mobile view - pagination
+	- design  redesign desktop view - pagination
+	- dev     make heading links
+	- design  design “essay” styles
+	- design  design list view
+	- dev     change “what” quote styling
+	- dev     create list view
+	- dev     create mobile hovertext
+	- dev     fix alt text on full image
+	- dev     generalize “what” styles into a general “essay” style, applied to essays and any large block of text
+	- dev     make 404 functionality
+	- dev     tidy code <-- what does this mean? Refactor?
+	- write   write the “how” page
+	x dev     fix menu spelling
+	x change tilde thing around dates
+	x design desktop view
+	x design menu
+	x finish build script	dev,required for launch
+	x implement description extra
+	x implement menu
+	x load the comic tsv into forge so I can check that the path is unique
+	x organise classnames and styling
+	x remove the render script from forge script, use the self contained module
+	x write the “why” page	required for launch 
