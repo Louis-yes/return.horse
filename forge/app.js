@@ -65,10 +65,12 @@ function download(name, content){
 
 function update(render){
     const cc = formToComic(form)
+    const formattedText = [cc.panelOneText.replace(/\n/g, " "), cc.panelTwoText.replace(/\n/g, " ")]
     panelFull.src = render(cc)[0]
-    document.querySelector("#panelOneAlt").value = `${PANELONEDESCRIPTION}. Text reads: ${cc.panelOneText.replace(/\n/g, " ")}`; 
-    document.querySelector("#panelTwoAlt").value = `${PANELTWODESCRIPTION}. Text reads: ${cc.panelTwoText.replace(/\n/g, " ")}`; 
-    document.querySelector("#fullAlt").value = `Panel One: ${PANELONEDESCRIPTION}. Text reads - ${cc.panelOneText.replace(/\n/g, " ")}. Panel Two: ${PANELTWODESCRIPTION}. Text reads - ${cc.panelTwoText.replace(/\n/g, " ")}`
+    document.querySelector("#panelOneAlt").value = `${PANELONEDESCRIPTION}. Text reads: ${formattedText[0]}`; 
+    document.querySelector("#panelTwoAlt").value = `${PANELTWODESCRIPTION}. Text reads: ${formattedText[1]}`; 
+    document.querySelector("#fullAlt").value    = `Panel One: ${PANELONEDESCRIPTION}. Text reads - ${formattedText[0]}. ` 
+                                                + `Panel Two: ${PANELTWODESCRIPTION}. Text reads - ${formattedText[1]}`;
     localStorage.setItem('comic', JSON.stringify(cc))
     if(!data.some(c => c.path == cc.path)){
         form.querySelector('button').disabled = false;        
@@ -103,16 +105,15 @@ function comicToForm(cc, ff){
 
 function comicToString(comic){
     return `date: ${comic.date}
-    title: ${comic.title}
-    path: ${comic.path}
-    description: ${comic.description}
-    hovertext: ${comic.hovertext}
-    panelOneText: ${comic.panelOneText.replace(/\s?\n/g, " \\\\n ")} 
-    panelTwoText: ${comic.panelTwoText.replace(/\s?\n/g, " \\\\n ")}
-    panelOneAlt: ${comic.panelOneAlt}
-    panelTwoAlt: ${comic.panelTwoAlt}
-    fullAlt: ${comic.fullAlt}
-    `
+title: ${comic.title}
+path: ${comic.path}
+description: ${comic.description}
+hovertext: ${comic.hovertext}
+panelOneText: ${comic.panelOneText.replace(/\s?\n/g, " \\\\n ")} 
+panelTwoText: ${comic.panelTwoText.replace(/\s?\n/g, " \\\\n ")}
+panelOneAlt: ${comic.panelOneAlt}
+panelTwoAlt: ${comic.panelTwoAlt}
+fullAlt: ${comic.fullAlt}`
 }
 
 function createForm(){
