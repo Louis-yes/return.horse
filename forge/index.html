@@ -15,7 +15,8 @@
             grid-template-areas: 
             "img"
             "form"
-            "output"
+            "drafts"
+            "console"
             ;
         }
         label { display: block; }
@@ -31,8 +32,11 @@
             max-width: 600px; 
             margin: 0 auto;
         }
-        form { grid-area: form; }
-        textarea, input { 
+        form { 
+            grid-area: form; 
+            padding: 10px;
+        }
+        textarea, input[type="text"] { 
             border: solid 1px red; 
             outline: none; 
             border-radius: 4px;
@@ -42,20 +46,128 @@
             width: 100%;
         }
         li textarea { height: 100px; }
-        ul {
+
+
+        form fieldset {
+            border: none;
+            padding: 0;
+        }
+        form ul {
             display: grid;
             gap: 10px;
+            padding: 0;
             grid-template-columns: 1fr 1fr;
         }
+
+        form button {
+            background-color: #fff;
+            border: 1px solid red;
+            margin: 0px 15px 20px 0;
+            font-size: 16px;
+            color: red;
+            padding: 8px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        form button:hover {
+            outline: 1px solid red;
+            outline-offset: 5px;
+        }
+        form button:active {
+            outline: 1px solid red;
+            outline-offset: 4px;
+        }
+
         li:first-child, li:nth-child(2) { grid-column: span 1; }
         li { grid-column: span 2; }
-        
+
+        [for="panelTwoAlt"], #panelTwoAlt,
+        [for="panelOneAlt"], #panelOneAlt,
+        [for="fullAlt"], #fullAlt {
+            display: none;
+        }
+
+        #draft-list li {
+            display: flex;
+            padding: 0;
+            border: 1px solid red;
+            border-bottom: none;
+        }
+        #draft-list li:last-child {
+            border-bottom: 1px solid red;
+        }
+        #draft-list label {
+            width: 100%;
+            padding: 10px;
+            cursor: pointer;
+            display: block;
+        }
+
+        #draft-list :checked + label {
+            /* font-style: italic; */
+            outline: 1px solid red;
+            outline-offset: 5px;
+        }
+        #draft-list label:hover {
+            /* background-color: red; */
+            /* color: white; */
+            outline: 1px solid red; 
+            outline-offset: 6px;
+        }
+
+        #draft-list :active + label {
+            outline: 1px solid red;
+            outline-offset: 4px;
+        }
+
+        #draft-list input {
+            display: none;
+        }
+
+        #draft-list  { 
+            margin: 0;
+            padding: 0;
+        }
+
+        #drafts {
+            border: none;
+            padding:10px;
+            grid-area: drafts;
+        }
+
+        #drafts button {
+            background-color: #fff;
+            border: 1px solid red;
+            margin: 10px 15px 0px 0;
+            font-size: 16px;
+            color: red;
+            padding: 8px;
+            cursor: pointer;
+            position: relative;
+        }
+        #drafts button:hover {
+            outline: 1px solid red;
+            outline-offset: 5px;
+        }
+        #drafts button:active {
+            outline: 1px solid red;
+            outline-offset: 4px;
+        }
+
+        #console {
+            grid-area: console;
+            border: solid 1px red;
+        }
+
         .output label { margin-bottom: 0; }
         @media screen and (min-width:800px) {
             main {
                 grid-template-columns: 30% auto;
                 grid-template-areas: 
                 "form   img"
+                "drafts   img"
+                "drafts     console"
                 ;
             }
             img {float:right;}
@@ -65,8 +177,16 @@
 <body>
     <main>
         <img id="panel-full" src=""/>
-        <form>
+        <form id="form">
+            <fieldset>
+
+            </fieldset>
+            <button id="clear-form" type="button" name="clear">clear</button>
+            <button id="publish" type="submit">publish</button>
         </form>
+        <fieldset id="drafts">
+
+        </fieldset>
     </main>
     <script src="../clay/render.js"></script>
     <script src="app.js"></script>
