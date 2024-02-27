@@ -154,7 +154,10 @@ function Form(el) {
   renderForm();
   fetch("../clay/comics.tsv")
     .then((res) => res.text())
-    .then((d) => (publishedComics = tsvToComicArray(d)));
+    .then((d) => {
+      publishedComics = tsvToComicArray(d);
+      enrichForm();
+    });
 
   el.addEventListener("input", () => {
     enrichForm();
